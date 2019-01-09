@@ -1,0 +1,10 @@
+## Interface: 11200
+## Title: BeardleysDiabloOrbsVanilla
+## Version: 0.1
+## Notes: Beardley's Diablo Orbs backported to Vanilla WoW
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: BDVanilla_SV
+BeardleysDiabloOrbsVanilla.xml
+BeardleysDiabloOrbsVanilla.lua
+
