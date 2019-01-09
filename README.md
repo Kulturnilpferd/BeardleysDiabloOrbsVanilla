@@ -4,7 +4,7 @@ Hey there,
 this is a backported Diablo like UI for World of Warcraft 1.12.1 (Vanilla)
 
 Hints:
- - Missing an actionbar? Enable all actionbars in the Interface Settings
+ - Missing an actionbar? Enable all actionbars in the Interface Settings (ESC -> Interface)
  
  - UI too Big/Small? Change the scaling open "BeardleysDiabloOrbsVanilla.lua" and change the first Variable "Scalefactor"
 
