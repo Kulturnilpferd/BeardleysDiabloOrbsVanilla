@@ -10,6 +10,6 @@ Hints:
  
  - UI too Big/Small? Change the scaling open "BeardleysDiabloOrbsVanilla.lua" and change the first Variable "Scalefactor"
 
- - When the artwork is not attached to the orbs just enable UI-Scaling in Graphics Options and set it to 
+ - When the artwork is not attached to the orbs just enable UI-Scaling in Graphics Options and set it to 1
  
  - Still miss an actionbar or button?  Just tell me which it was and I will add it 🙂 
