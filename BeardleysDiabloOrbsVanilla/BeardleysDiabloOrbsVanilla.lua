@@ -1,4 +1,15 @@
-﻿Scalefactor = 1.35   -- With this value you can scale the whole UI
+----------------------------
+----------------------------
+-- Beardley's Diablo Orbs --
+-- (c)2019 Kulturnilpferd -- 
+----------------------------
+--        Settings        --
+----------------------------
+Scalefactor = 1.35 -- With this value you can scale the whole UI. Menu with settings is comming soon...
+----------------------------
+----------------------------
+
+
 local images = "Interface\\AddOns\\BeardleysDiabloOrbsVanilla\\art\\"
 function BDOV_OnLoad()
 	this:RegisterEvent("UNIT_HEALTH")
@@ -16,7 +27,8 @@ function BDOV_OnLoad()
 	this:RegisterEvent("LOOT_CLOSED")
 	MainMenuBarArtFrame:RegisterEvent('KNOWN_CURRENCY_TYPES_UPDATE')
 	MainMenuBarArtFrame:RegisterEvent('CURRENCY_DISPLAY_UPDATE')
-end  
+end
+
 local function addArtwork(file,orb,name,offsetX,offsetY,height,width)
 	local CastBar = CreateFrame("Frame","BD32"..name,orb)
 	CastBar:SetPoint("BOTTOM",offsetX,offsetY)
@@ -31,7 +43,7 @@ local function addArtwork(file,orb,name,offsetX,offsetY,height,width)
 	return CastBar
 end
 
-function loadArtwork()
+function createArtwork()
 	castBarArtwork = addArtwork(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
 	castBarArtwork:SetFrameStrata("LOW")	
 	
@@ -42,15 +54,15 @@ function loadArtwork()
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
-function GetActiveForm()
-  for i=1,GetNumShapeshiftForms() do
-    if  ({GetShapeshiftFormInfo(i)})[3]
-    then return i end
-  end
-  return 0
-end
+--function GetActiveForm()
+--  for i=1,GetNumShapeshiftForms() do
+--    if  ({GetShapeshiftFormInfo(i)})[3]
+--    then return i end
+--  end
+--  return 0
+--end
 
-function HandleActionBar() -- Hide Actionbar if Bonusactionbar is active
+function changeActionBar()
 	if GetBonusBarOffset() == 0 then
 		ActionButton1:Show()
 		ActionButton2:Show()
@@ -80,7 +92,7 @@ function HandleActionBar() -- Hide Actionbar if Bonusactionbar is active
 	end
 end
 
-function UpdateHealthOrb()
+function updateHealthOrb()
 	local healthPercent = (UnitHealth("player")/UnitHealthMax("player"))
 	BDOMod_HealthPercentage:SetText(floor(healthPercent * 100))
 	BDOMod_HealthText:SetText(UnitHealth("player").." / ".. UnitHealthMax("player"))
@@ -88,7 +100,7 @@ function UpdateHealthOrb()
 	BDOMod_RedOrb:SetTexCoord(0, 1, 1-healthPercent, 1)
 end
 
-function UpdateManaOrb()
+function updateManaOrb()
 	local manaPercent = (UnitMana("player")/UnitManaMax("player"))
 	BDOMod_ManaPercentage:SetText(floor(manaPercent * 100))
 	BDOMod_ManaText:SetText(UnitMana("player").." / ".. UnitManaMax("player"))
@@ -211,9 +223,6 @@ function reconfigUI()
 	BonusActionButton10.ignoreFramePositionManager = true
 	BonusActionButton11.ignoreFramePositionManager = true
 	BonusActionButton12.ignoreFramePositionManager = true
-		
-	--Setup Chatframe
-	ChatFrame1:SetFrameStrata("MEDIUM")
 	
 	--Setup Left Multibar
 	MultiBarBottomLeftButton1:ClearAllPoints()
@@ -338,7 +347,7 @@ function reconfigUI()
 	CastingBarFrame:SetPoint("CENTER", 0, 500)	
 	
 	
-	--Setup Chatframe	
+	--Setup Chatframes
 	ChatFrame1:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
@@ -365,7 +374,6 @@ function reconfigUI()
 	ChatFrame7:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	--Pet Bar (See code below, i have to double it to get it run)
 	PetActionBarFrame:ClearAllPoints()
 	PetActionBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",-77,194)
 	PetActionBarFrame:SetScale(val*60)
@@ -412,8 +420,7 @@ function reconfigUI()
 	CharacterBag1Slot:SetScale(val*38)
 	CharacterBag2Slot:SetScale(val*38)
 	CharacterBag3Slot:SetScale(val*38)
-	
-	
+		
 	CharacterMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-125,0)
 	SpellbookMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-100,0)
 	TalentMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-75,0)
@@ -423,7 +430,6 @@ function reconfigUI()
 	MainMenuMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",25,0)
 	HelpMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",50,0)
 
-	
 	MainMenuBarBackpackButton:SetPoint("BOTTOM", UIParent, "BOTTOM",400,1)
 	CharacterBag0Slot:SetPoint("BOTTOM", UIParent, "BOTTOM",360,1)
 	CharacterBag1Slot:SetPoint("BOTTOM", UIParent, "BOTTOM",320,1)
@@ -440,7 +446,6 @@ function reconfigUI()
 	CharacterBag1Slot.ignoreFramePositionManager = true
 	CharacterBag2Slot.ignoreFramePositionManager = true
 	CharacterBag3Slot.ignoreFramePositionManager = true
-	
 	
 	ShapeshiftButton1:ClearAllPoints()
 	ShapeshiftButton1:SetScale(val*48)
@@ -466,20 +471,15 @@ function reconfigUI()
 	ShapeshiftButton6:SetScale(val*48)
 	ShapeshiftButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-158,1)		
 
-
 	MainMenuExpBar:ClearAllPoints()
-	ReputationWatchBar:ClearAllPoints()
-
 	MainMenuExpBar:SetScale(val*31)
-	ReputationWatchBar:SetScale(val*31)
-	local barYoffset = 95
-	local ExpBarYoffset = 0
+	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
 	
-
-	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,134 + barYoffset + ExpBarYoffset)--249
-	ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,120 + barYoffset + ExpBarYoffset)--235
-		
-
+	ReputationWatchBar:ClearAllPoints()
+	ReputationWatchBar:SetScale(val*31)
+	ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
+	
+	
 	ActionBarUpButton:ClearAllPoints()
 	ActionBarUpButton:SetScale(val*66)
 	ActionBarUpButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,16)
@@ -489,22 +489,24 @@ function reconfigUI()
 	ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,-2)
 end
       
-function BDOMod_InitialiseOrbs()
+function createOrbs()
+	--BDOMod_RedOrb:SetVertexColor(0.85,0.2,0.2)
+	--BDOMod_RedOrb:SetAlpha(0.95)
+	BDOMod_RedOrb:SetVertexColor(0.0,1.0,0.0)
+	BDOMod_RedOrb:SetTexCoord(0, 1, 0, 1)	
+	
 	BDOMod_HealthText:SetFont("Fonts\\FRIZQT__.TTF", 12)
 	BDOMod_HealthPercentage:SetFont("Fonts\\FRIZQT__.TTF", 25)
 	BDOMod_HealthText:SetText(UnitHealth("player").." / ".. UnitHealthMax("player"))
 	BDOMod_HealthPercentage:SetText(100)
-	--BDOMod_RedOrb:SetVertexColor(0.85,0.2,0.2)
-	BDOMod_RedOrb:SetVertexColor(0.0,1.0,0.0)        
-	--BDOMod_RedOrb:SetAlpha(0.95)
-	BDOMod_RedOrb:SetTexCoord(0, 1, 0, 1)
+
 	BDOMod_ManaText:SetFont("Fonts\\FRIZQT__.TTF", 12)
 	BDOMod_ManaPercentage:SetFont("Fonts\\FRIZQT__.TTF", 25)
 	BDOMod_ManaText:SetText(UnitMana("player").." / ".. UnitManaMax("player"))
 	BDOMod_ManaText:SetText(100)
 end
 
-function UpdatePowerType()
+function updatePowerType()
 	local powerType = UnitPowerType("player")
 	if (powerType == 0) then -- Mana
 		BDOMod_BlueOrb:SetVertexColor(0.2,0.2,1.0)
@@ -530,31 +532,30 @@ end
 
 function BDOMod_OnEvent(event)
 	if (event=="PLAYER_ENTERING_WORLD") then 
-		BDOMod_InitialiseOrbs()
-		UpdatePowerType()
-		UpdateHealthOrb()
-		UpdateManaOrb()
-		loadArtwork()
+		createOrbs()
+		createArtwork()
 		reconfigUI()
+		updatePowerType()
+		updateHealthOrb()
+		updateManaOrb()
 		return
 	end 
 	if (event=="UNIT_DISPLAYPOWER") then 
-		BDOMod_InitialiseOrbs()
-		UpdatePowerType()
-		UpdateHealthOrb()
-		UpdateManaOrb()
+		updatePowerType()
+		updateHealthOrb()
+		updateManaOrb()
 		return
 	end
 	if (event=="UNIT_HEALTH") then 
-		UpdateHealthOrb()
+		updateHealthOrb()
 		return
 	end
-	if (event=="UNIT_MANA" or event=="UNIT_RAGE" or event=="UNIT_ENERGY" or event=="UNIT_RUNIC_POWER" ) then    
-		UpdateManaOrb()
+	if (event=="UNIT_MANA" or event=="UNIT_RAGE" or event=="UNIT_ENERGY" or event=="UNIT_RUNIC_POWER") then    
+		updateManaOrb()
 		return
 	end
 	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="LOOT_CLOSED") then
-		HandleActionBar()
+		changeActionBar()
 		return
 	end
 end
