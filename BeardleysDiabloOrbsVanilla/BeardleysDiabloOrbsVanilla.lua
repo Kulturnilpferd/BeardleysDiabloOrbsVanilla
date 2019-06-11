@@ -14,6 +14,7 @@ function BDOV_OnLoad()
 	this:RegisterEvent("PLAYER_REGEN_ENABLED");
 	this:RegisterEvent("UPDATE_BONUS_ACTIONBAR");
 	this:RegisterEvent("ACTIONBAR_SLOT_CHANGED");
+	this:RegisterEvent("LOOT_CLOSED");
 	MainMenuBarArtFrame:RegisterEvent('KNOWN_CURRENCY_TYPES_UPDATE')
 	MainMenuBarArtFrame:RegisterEvent('CURRENCY_DISPLAY_UPDATE')
 end  
@@ -533,7 +534,7 @@ function DiabloMod_OnEvent(event)
 		DiabloMod_BlueOrb:SetTexCoord(0, 1, 1-manaPercent, 1);
 		return;
 	end
-	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED") then
+	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="LOOT_CLOSED") then
 	HandleActionBar();
 	end
 end
