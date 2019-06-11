@@ -30,22 +30,22 @@ function BDOV_OnLoad()
 end
 
 local function addArtwork(file,orb,name,offsetX,offsetY,height,width)
-	local CastBar = CreateFrame("Frame","BD32"..name,orb)
-	CastBar:SetPoint("BOTTOM",offsetX,offsetY)
-	CastBar:SetHeight(height)
-	CastBar:SetWidth(width)
-	CastBar.texture = CastBar:CreateTexture(nil,"OVERLAY")
-	CastBar.texture:SetTexture(file)
-	CastBar.texture:SetAllPoints(CastBar)
-	CastBar:SetScript("OnLeave",function()
+	local artwork = CreateFrame("Frame","BD32"..name,orb)
+	artwork:SetPoint("BOTTOM",offsetX,offsetY)
+	artwork:SetHeight(height)
+	artwork:SetWidth(width)
+	artwork.texture = artwork:CreateTexture(nil,"OVERLAY")
+	artwork.texture:SetTexture(file)
+	artwork.texture:SetAllPoints(artwork)
+	artwork:SetScript("OnLeave",function()
 		GameTooltip:Hide()
 	end)
-	return CastBar
+	return artwork
 end
 
 local function createArtwork()
-	castBarArtwork = addArtwork(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
-	castBarArtwork:SetFrameStrata("LOW")	
+	castbarBackground = addArtwork(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
+	castbarBackground:SetFrameStrata("LOW")	
 	
 	leftArtwork = addArtwork(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
@@ -112,13 +112,15 @@ local function reconfigUI()
 	val = Scalefactor
 	MainMenuBar:SetScale(.01)
 	MainMenuBar.ignoreFramePositionManager = true
-	
+
 	BDOMod_HealthOrb:SetScale(val*70/100)
 	BDOMod_ManaOrb:SetScale(val*70/100)
-	castBarArtwork:SetScale(val*90/100)
+
+	castbarBackground:SetScale(val*90/100)
+
 	leftArtwork:SetScale(val)
 	rightArtwork:SetScale(val)	
-	
+
 	--Setup Action Bar
 	ActionButton1:ClearAllPoints()
 	ActionButton2:ClearAllPoints()
@@ -145,7 +147,7 @@ local function reconfigUI()
 	ActionButton10:SetScale(val*60)
 	ActionButton11:SetScale(val*60)
 	ActionButton12:SetScale(val*60)
-	
+
 	ActionButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-246,29)
 	ActionButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-201,29)
 	ActionButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-156,29)
@@ -158,7 +160,7 @@ local function reconfigUI()
 	ActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",156,29)
 	ActionButton11:SetPoint("BOTTOM", UIParent, "BOTTOM",201,29)
 	ActionButton12:SetPoint("BOTTOM", UIParent, "BOTTOM",246,29)
-	
+
 	ActionButton1.ignoreFramePositionManager = true
 	ActionButton2.ignoreFramePositionManager = true
 	ActionButton3.ignoreFramePositionManager = true
@@ -171,7 +173,7 @@ local function reconfigUI()
 	ActionButton10.ignoreFramePositionManager = true
 	ActionButton11.ignoreFramePositionManager = true
 	ActionButton12.ignoreFramePositionManager = true
-		
+
 	BonusActionButton1:ClearAllPoints()
 	BonusActionButton2:ClearAllPoints()
 	BonusActionButton3:ClearAllPoints()
@@ -184,7 +186,7 @@ local function reconfigUI()
 	BonusActionButton10:ClearAllPoints()
 	BonusActionButton11:ClearAllPoints()
 	BonusActionButton12:ClearAllPoints()
-	
+
 	BonusActionButton1:SetScale(val*60)
 	BonusActionButton2:SetScale(val*60)
 	BonusActionButton3:SetScale(val*60)
@@ -197,7 +199,7 @@ local function reconfigUI()
 	BonusActionButton10:SetScale(val*60)
 	BonusActionButton11:SetScale(val*60)
 	BonusActionButton12:SetScale(val*60)	
-	
+
 	BonusActionButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-246,29)
 	BonusActionButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-201,29)
 	BonusActionButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-156,29)
@@ -210,7 +212,7 @@ local function reconfigUI()
 	BonusActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",156,29)
 	BonusActionButton11:SetPoint("BOTTOM", UIParent, "BOTTOM",201,29)
 	BonusActionButton12:SetPoint("BOTTOM", UIParent, "BOTTOM",246,29)	
-	
+
 	BonusActionButton1.ignoreFramePositionManager = true
 	BonusActionButton2.ignoreFramePositionManager = true
 	BonusActionButton3.ignoreFramePositionManager = true
@@ -223,7 +225,7 @@ local function reconfigUI()
 	BonusActionButton10.ignoreFramePositionManager = true
 	BonusActionButton11.ignoreFramePositionManager = true
 	BonusActionButton12.ignoreFramePositionManager = true
-	
+
 	--Setup Left Multibar
 	MultiBarBottomLeftButton1:ClearAllPoints()
 	MultiBarBottomLeftButton2:ClearAllPoints()
@@ -237,7 +239,7 @@ local function reconfigUI()
 	MultiBarBottomLeftButton10:ClearAllPoints()
 	MultiBarBottomLeftButton11:ClearAllPoints()
 	MultiBarBottomLeftButton12:ClearAllPoints()
-	
+
 	MultiBarBottomLeftButton1:SetScale(val*60/100)
 	MultiBarBottomLeftButton2:SetScale(val*60/100)
 	MultiBarBottomLeftButton3:SetScale(val*60/100)
@@ -250,7 +252,7 @@ local function reconfigUI()
 	MultiBarBottomLeftButton10:SetScale(val*60/100)
 	MultiBarBottomLeftButton11:SetScale(val*60/100)
 	MultiBarBottomLeftButton12:SetScale(val*60/100)
-	
+
 	MultiBarBottomLeftButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-246,75)
 	MultiBarBottomLeftButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-201,75)
 	MultiBarBottomLeftButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-156,75)
@@ -263,7 +265,7 @@ local function reconfigUI()
 	MultiBarBottomLeftButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",156,75)
 	MultiBarBottomLeftButton11:SetPoint("BOTTOM", UIParent, "BOTTOM",201,75)
 	MultiBarBottomLeftButton12:SetPoint("BOTTOM", UIParent, "BOTTOM",246,75)
-	
+
 	MultiBarBottomLeftButton1.ignoreFramePositionManager = true
 	MultiBarBottomLeftButton2.ignoreFramePositionManager = true
 	MultiBarBottomLeftButton3.ignoreFramePositionManager = true
@@ -276,7 +278,7 @@ local function reconfigUI()
 	MultiBarBottomLeftButton10.ignoreFramePositionManager = true
 	MultiBarBottomLeftButton11.ignoreFramePositionManager = true
 	MultiBarBottomLeftButton12.ignoreFramePositionManager = true
-	
+
 	--Setup Right Multibar
 	MultiBarBottomRightButton1:ClearAllPoints()
 	MultiBarBottomRightButton2:ClearAllPoints()
@@ -316,7 +318,7 @@ local function reconfigUI()
 	MultiBarBottomRightButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",156,132)
 	MultiBarBottomRightButton11:SetPoint("BOTTOM", UIParent, "BOTTOM",201,132)
 	MultiBarBottomRightButton12:SetPoint("BOTTOM", UIParent, "BOTTOM",246,132)
-	
+
 	MultiBarBottomRightButton1.ignoreFramePositionManager = true
 	MultiBarBottomRightButton2.ignoreFramePositionManager = true
 	MultiBarBottomRightButton3.ignoreFramePositionManager = true
@@ -329,48 +331,39 @@ local function reconfigUI()
 	MultiBarBottomRightButton10.ignoreFramePositionManager = true
 	MultiBarBottomRightButton11.ignoreFramePositionManager = true
 	MultiBarBottomRightButton12.ignoreFramePositionManager = true
-	
 
 	MultiBarLeft:SetScale(val*60/100)	
 	MultiBarLeftButton1:ClearAllPoints()
 	MultiBarLeftButton1:SetPoint("RIGHT",UIParent,"RIGHT",-45,185)
 
-
 	MultiBarRight:SetScale(val*60/100)
 	MultiBarRightButton1:ClearAllPoints()
 	MultiBarRightButton1:SetPoint("RIGHT",UIParent,"RIGHT",-3,185)
-
 
 	CastingBarFrame:SetScale(val*80/100)
 
 	CastingBarFrame:ClearAllPoints()
 	CastingBarFrame:SetPoint("CENTER", 0, 500)	
-	
-	
+
 	--Setup Chatframes
 	ChatFrame1:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	
 	ChatFrame2:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
 	ChatFrame3:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	
 	ChatFrame4:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	
 	ChatFrame5:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	
 	ChatFrame6:SetFrameStrata("HIGH")	
 	ChatFrame1:SetFrameLevel(9)
 
-	
 	ChatFrame7:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
@@ -379,19 +372,19 @@ local function reconfigUI()
 	PetActionBarFrame:SetScale(val*60)
 	PetActionBarFrame:Show()
 	--PetActionBarFrame.ignoreFramePositionManager = true
-	
+
 	--EXP Bar
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetScale(val*34.4)
 	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",0,232)
 	MainMenuExpBar.ignoreFramePositionManager = true
-	
+
 	--REP Bar (Positioning doesnt work...)
 	--ReputationWatchBar:ClearAllPoints()
 	--ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",0,230)
 	--ReputationWatchBar:SetScale(val*34.6)
 	--ReputationWatchBar.ignoreFramePositionManager = true
-	
+
 	--Micro Buttons	
 	CharacterMicroButton:ClearAllPoints()
 	SpellbookMicroButton:ClearAllPoints()
@@ -406,7 +399,7 @@ local function reconfigUI()
 	CharacterBag1Slot:ClearAllPoints()
 	CharacterBag2Slot:ClearAllPoints()
 	CharacterBag3Slot:ClearAllPoints()
-		
+
 	CharacterMicroButton:SetScale(val*42)
 	SpellbookMicroButton:SetScale(val*42)
 	TalentMicroButton:SetScale(val*42)
@@ -420,7 +413,7 @@ local function reconfigUI()
 	CharacterBag1Slot:SetScale(val*38)
 	CharacterBag2Slot:SetScale(val*38)
 	CharacterBag3Slot:SetScale(val*38)
-		
+
 	CharacterMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-125,0)
 	SpellbookMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-100,0)
 	TalentMicroButton:SetPoint("BOTTOM", UIParent, "BOTTOM",-75,0)
@@ -435,7 +428,7 @@ local function reconfigUI()
 	CharacterBag1Slot:SetPoint("BOTTOM", UIParent, "BOTTOM",320,1)
 	CharacterBag2Slot:SetPoint("BOTTOM", UIParent, "BOTTOM",280,1)
 	CharacterBag3Slot:SetPoint("BOTTOM", UIParent, "BOTTOM",240,1)
-	
+
 	CharacterMicroButton.ignoreFramePositionManager = true
 	SpellbookMicroButton.ignoreFramePositionManager = true
 	TalentMicroButton.ignoreFramePositionManager = true
@@ -446,27 +439,27 @@ local function reconfigUI()
 	CharacterBag1Slot.ignoreFramePositionManager = true
 	CharacterBag2Slot.ignoreFramePositionManager = true
 	CharacterBag3Slot.ignoreFramePositionManager = true
-	
+
 	ShapeshiftButton1:ClearAllPoints()
 	ShapeshiftButton1:SetScale(val*48)
 	ShapeshiftButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-318,1)
-	
+
 	ShapeshiftButton2:ClearAllPoints()
 	ShapeshiftButton2:SetScale(val*48)
 	ShapeshiftButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-286,1) --62
-	
+
 	ShapeshiftButton3:ClearAllPoints()
 	ShapeshiftButton3:SetScale(val*48)
 	ShapeshiftButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-254,1)
-	
+
 	ShapeshiftButton4:ClearAllPoints()
 	ShapeshiftButton4:SetScale(val*48)
 	ShapeshiftButton4:SetPoint("BOTTOM", UIParent, "BOTTOM",-222,1)
-	
+
 	ShapeshiftButton5:ClearAllPoints()
 	ShapeshiftButton5:SetScale(val*48)
 	ShapeshiftButton5:SetPoint("BOTTOM", UIParent, "BOTTOM",-190,1)
-	
+
 	ShapeshiftButton6:ClearAllPoints()
 	ShapeshiftButton6:SetScale(val*48)
 	ShapeshiftButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-158,1)		
@@ -474,21 +467,20 @@ local function reconfigUI()
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetScale(val*31)
 	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
-	
+
 	ReputationWatchBar:ClearAllPoints()
 	ReputationWatchBar:SetScale(val*31)
 	ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
-	
-	
+
 	ActionBarUpButton:ClearAllPoints()
 	ActionBarUpButton:SetScale(val*66)
 	ActionBarUpButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,16)
-	
+
 	ActionBarDownButton:ClearAllPoints()
 	ActionBarDownButton:SetScale(val*66)
 	ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,-2)
 end
-      
+
 local function createOrbs()
 	--BDOMod_RedOrb:SetVertexColor(0.85,0.2,0.2)
 	--BDOMod_RedOrb:SetAlpha(0.95)
@@ -512,21 +504,25 @@ local function updatePowerType()
 		BDOMod_BlueOrb:SetVertexColor(0.2,0.2,1.0)
 		--BDOMod_BlueOrb:SetAlpha(0.95)
 		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1) 
+		return
 	end
 	if (powerType == 1) then -- Rage
 		BDOMod_BlueOrb:SetVertexColor(1.0,0.15,0.15)
 		--BDOMod_BlueOrb:SetAlpha(0.95)
-		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1) 
+		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1)
+		return
 	end
 	if (powerType == 3) then -- Energy
 		BDOMod_BlueOrb:SetVertexColor(1.0,1.0,0.0)
 		--BDOMod_BlueOrb:SetAlpha(0.95)
-		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1) 
+		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1)
+		return
 	end
 	if (powerType == 6) then -- Runic_Power
 		BDOMod_BlueOrb:SetVertexColor(0.2,0.75,1.0)
 		--BDOMod_BlueOrb:SetAlpha(0.95)
-		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1) 
+		BDOMod_BlueOrb:SetTexCoord(0, 1, 0, 1)
+		return
 	end
 end
 
