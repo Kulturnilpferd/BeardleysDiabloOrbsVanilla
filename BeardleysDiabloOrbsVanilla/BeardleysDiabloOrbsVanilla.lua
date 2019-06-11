@@ -29,28 +29,28 @@ function BDOV_OnLoad()
 	MainMenuBarArtFrame:RegisterEvent('CURRENCY_DISPLAY_UPDATE')
 end
 
-local function addArtwork(file,orb,name,offsetX,offsetY,height,width)
-	local artwork = CreateFrame("Frame","BD32"..name,orb)
-	artwork:SetPoint("BOTTOM",offsetX,offsetY)
-	artwork:SetHeight(height)
-	artwork:SetWidth(width)
-	artwork.texture = artwork:CreateTexture(nil,"OVERLAY")
-	artwork.texture:SetTexture(file)
-	artwork.texture:SetAllPoints(artwork)
-	artwork:SetScript("OnLeave",function()
+local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
+	local artworkFrame = CreateFrame("Frame","BD32"..name,orb)
+	artworkFrame:SetPoint("BOTTOM",offsetX,offsetY)
+	artworkFrame:SetHeight(height)
+	artworkFrame:SetWidth(width)
+	artworkFrame.texture = artworkFrame:CreateTexture(nil,"OVERLAY")
+	artworkFrame.texture:SetTexture(file)
+	artworkFrame.texture:SetAllPoints(artworkFrame)
+	artworkFrame:SetScript("OnLeave",function()
 		GameTooltip:Hide()
 	end)
-	return artwork
+	return artworkFrame
 end
 
 local function createArtwork()
-	castbarBackground = addArtwork(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
+	castbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
 	castbarBackground:SetFrameStrata("LOW")	
 	
-	leftArtwork = addArtwork(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
+	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
 	
-	rightArtwork = addArtwork(images.."rightArtwork.tga",manaOrb1,"DemonFrame",315,0,200,200)
+	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",manaOrb1,"DemonFrame",315,0,200,200)
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
@@ -481,7 +481,7 @@ local function reconfigUI()
 	ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,-2)
 end
 
-local function createOrbs()
+local function setupOrbs()
 	--BDOMod_RedOrb:SetVertexColor(0.85,0.2,0.2)
 	--BDOMod_RedOrb:SetAlpha(0.95)
 	BDOMod_RedOrb:SetVertexColor(0.0,1.0,0.0)
@@ -528,7 +528,7 @@ end
 
 function BDOMod_OnEvent(event)
 	if (event=="PLAYER_ENTERING_WORLD") then 
-		createOrbs()
+		setupOrbs()
 		createArtwork()
 		reconfigUI()
 		updatePowerType()
