@@ -43,7 +43,7 @@ local function addArtwork(file,orb,name,offsetX,offsetY,height,width)
 	return CastBar
 end
 
-function createArtwork()
+local function createArtwork()
 	castBarArtwork = addArtwork(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
 	castBarArtwork:SetFrameStrata("LOW")	
 	
@@ -54,7 +54,7 @@ function createArtwork()
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
---function GetActiveForm()
+--local function GetActiveForm()
 --  for i=1,GetNumShapeshiftForms() do
 --    if  ({GetShapeshiftFormInfo(i)})[3]
 --    then return i end
@@ -62,7 +62,7 @@ end
 --  return 0
 --end
 
-function changeActionBar()
+local function changeActionBar()
 	if GetBonusBarOffset() == 0 then
 		ActionButton1:Show()
 		ActionButton2:Show()
@@ -92,7 +92,7 @@ function changeActionBar()
 	end
 end
 
-function updateHealthOrb()
+local function updateHealthOrb()
 	local healthPercent = (UnitHealth("player")/UnitHealthMax("player"))
 	BDOMod_HealthPercentage:SetText(floor(healthPercent * 100))
 	BDOMod_HealthText:SetText(UnitHealth("player").." / ".. UnitHealthMax("player"))
@@ -100,7 +100,7 @@ function updateHealthOrb()
 	BDOMod_RedOrb:SetTexCoord(0, 1, 1-healthPercent, 1)
 end
 
-function updateManaOrb()
+local function updateManaOrb()
 	local manaPercent = (UnitMana("player")/UnitManaMax("player"))
 	BDOMod_ManaPercentage:SetText(floor(manaPercent * 100))
 	BDOMod_ManaText:SetText(UnitMana("player").." / ".. UnitManaMax("player"))
@@ -108,7 +108,7 @@ function updateManaOrb()
 	BDOMod_BlueOrb:SetTexCoord(0, 1, 1-manaPercent, 1)
 end
 
-function reconfigUI()
+local function reconfigUI()
 	val = Scalefactor
 	MainMenuBar:SetScale(.01)
 	MainMenuBar.ignoreFramePositionManager = true
@@ -489,7 +489,7 @@ function reconfigUI()
 	ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,-2)
 end
       
-function createOrbs()
+local function createOrbs()
 	--BDOMod_RedOrb:SetVertexColor(0.85,0.2,0.2)
 	--BDOMod_RedOrb:SetAlpha(0.95)
 	BDOMod_RedOrb:SetVertexColor(0.0,1.0,0.0)
@@ -506,7 +506,7 @@ function createOrbs()
 	BDOMod_ManaText:SetText(100)
 end
 
-function updatePowerType()
+local function updatePowerType()
 	local powerType = UnitPowerType("player")
 	if (powerType == 0) then -- Mana
 		BDOMod_BlueOrb:SetVertexColor(0.2,0.2,1.0)
