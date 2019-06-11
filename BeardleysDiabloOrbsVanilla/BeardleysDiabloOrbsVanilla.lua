@@ -44,8 +44,8 @@ local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
 end
 
 local function createArtwork()
-	castbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
-	castbarBackground:SetFrameStrata("LOW")	
+	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
+	actionbarBackground:SetFrameStrata("LOW")	
 	
 	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
@@ -116,7 +116,7 @@ local function reconfigUI()
 	BDOMod_HealthOrb:SetScale(val*70/100)
 	BDOMod_ManaOrb:SetScale(val*70/100)
 
-	castbarBackground:SetScale(val*90/100)
+	actionbarBackground:SetScale(val*90/100)
 
 	leftArtwork:SetScale(val)
 	rightArtwork:SetScale(val)	
