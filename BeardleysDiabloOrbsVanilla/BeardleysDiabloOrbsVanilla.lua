@@ -1,4 +1,4 @@
-﻿Scalefactor = 1.35   -- With this value you can scale the whole UI
+Scalefactor = 1.35   -- With this value you can scale the whole UI
 local images = "Interface\\AddOns\\BeardleysDiabloOrbsVanilla\\art\\"
 function BDOV_OnLoad()
 	this:RegisterEvent("UNIT_HEALTH")
@@ -489,6 +489,7 @@ end
 function DiabloMod_OnEvent(event)
 	if (event=="PLAYER_ENTERING_WORLD") then 
 		DiabloMod_InitialiseOrbs()
+		UpdatePowerType()
 		DiabloMod_AdjustOrbs()
 		loadArtwork()
 		reconfigUI()
@@ -496,6 +497,7 @@ function DiabloMod_OnEvent(event)
 	end 
 	if (event=="UNIT_DISPLAYPOWER") then 
 		DiabloMod_InitialiseOrbs()
+		UpdatePowerType()
 		DiabloMod_AdjustOrbs()
 		return
 	end
@@ -530,11 +532,14 @@ function DiabloMod_InitialiseOrbs()
 	DiabloMod_RedOrb:SetVertexColor(0.0,1.0,0.0)        
 	--DiabloMod_RedOrb:SetAlpha(0.95)
 	DiabloMod_RedOrb:SetTexCoord(0, 1, 0, 1)
-	local powerType = UnitPowerType("player")
 	DiabloMod_ManaText:SetFont("Fonts\\FRIZQT__.TTF", 12)
 	DiabloMod_ManaPercentage:SetFont("Fonts\\FRIZQT__.TTF", 25)
 	DiabloMod_ManaText:SetText(UnitMana("player").." / ".. UnitManaMax("player"))
 	DiabloMod_ManaText:SetText(100)
+end
+
+function UpdatePowerType()
+	local powerType = UnitPowerType("player")
 	if (powerType == 0) then -- Mana
 		DiabloMod_BlueOrb:SetVertexColor(0.2,0.2,1.0)
 		--DiabloMod_BlueOrb:SetAlpha(0.95)
