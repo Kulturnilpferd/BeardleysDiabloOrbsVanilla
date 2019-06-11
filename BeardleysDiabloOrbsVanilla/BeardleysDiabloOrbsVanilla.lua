@@ -50,7 +50,7 @@ local function createArtwork()
 	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
 	
-	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",manaOrb1,"DemonFrame",315,0,200,200)
+	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",manaOrb1,"DemonFrame",325,0,200,200)
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
