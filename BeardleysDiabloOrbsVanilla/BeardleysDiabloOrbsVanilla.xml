@@ -1,4 +1,4 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
 <Script file="BeardleysDiabloOrbsVanilla.lua"/>
      <!-- Generic orb frame for inheritance  -->
     <Frame name="BDOMod_OrbFrame" framestrata="MEDIUM" parent="UIParent" virtual="true">
@@ -49,7 +49,7 @@
 						        <AbsDimension x="9" y="-2"/>
 					        </Offset>
                         </Anchor>
-                    </Anchors>    
+                    </Anchors>
                 </Texture>
 			</Layer>
             <Layer level="BACKGROUND">   
@@ -61,10 +61,10 @@
                     <Anchors>
                         <Anchor point="BOTTOM">
                             <Offset>
-						        <AbsDimension x="9" y="-2"/>
+						        <AbsDimension x="7" y="-2"/>
 					        </Offset>
                         </Anchor>
-                    </Anchors>    
+                    </Anchors>
                 </Texture>
             </Layer>  
         </Layers>
