@@ -24,6 +24,7 @@ function BDOV_OnLoad()
 	this:RegisterEvent("PLAYER_REGEN_ENABLED")
 	this:RegisterEvent("UPDATE_BONUS_ACTIONBAR")
 	this:RegisterEvent("ACTIONBAR_SLOT_CHANGED")
+	this:RegisterEvent("ACTIONBAR_SHOWGRID")
 	this:RegisterEvent("LOOT_CLOSED")
 	MainMenuBarArtFrame:RegisterEvent('KNOWN_CURRENCY_TYPES_UPDATE')
 	MainMenuBarArtFrame:RegisterEvent('CURRENCY_DISPLAY_UPDATE')
@@ -550,7 +551,7 @@ function BDOMod_OnEvent(event)
 		updateManaOrb()
 		return
 	end
-	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="LOOT_CLOSED") then
+	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="ACTIONBAR_SHOWGRID" or event=="LOOT_CLOSED") then
 		changeActionBar()
 		return
 	end
