@@ -30,8 +30,8 @@ function BDOV_OnLoad()
 	MainMenuBarArtFrame:RegisterEvent('CURRENCY_DISPLAY_UPDATE')
 end
 
-local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
-	local artworkFrame = CreateFrame("Frame",name,orb)
+local function addArtworkFrame(file,parentFrame,frameName,offsetX,offsetY,height,width)
+	local artworkFrame = CreateFrame("Frame",frameName,parentFrame)
 	artworkFrame:SetPoint("BOTTOM",offsetX,offsetY)
 	artworkFrame:SetHeight(height)
 	artworkFrame:SetWidth(width)
@@ -45,13 +45,13 @@ local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
 end
 
 local function createArtwork()
-	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"actionbarBackground",1,-4,127,491)
+	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,nil,1,-4,127,491)
 	actionbarBackground:SetFrameStrata("LOW")	
 	
-	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",UIParent,"leftArtwork",-325,0,200,200)
+	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",UIParent,nil,-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
 	
-	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",UIParent,"rightArtwork",325,0,200,200)
+	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",UIParent,nil,325,0,200,200)
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
