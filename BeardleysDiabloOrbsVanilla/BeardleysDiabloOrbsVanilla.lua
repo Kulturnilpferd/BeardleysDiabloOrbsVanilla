@@ -31,7 +31,7 @@ function BDOV_OnLoad()
 end
 
 local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
-	local artworkFrame = CreateFrame("Frame","BD32"..name,orb)
+	local artworkFrame = CreateFrame("Frame",name,orb)
 	artworkFrame:SetPoint("BOTTOM",offsetX,offsetY)
 	artworkFrame:SetHeight(height)
 	artworkFrame:SetWidth(width)
@@ -45,13 +45,13 @@ local function addArtworkFrame(file,orb,name,offsetX,offsetY,height,width)
 end
 
 local function createArtwork()
-	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"BD32_BarFrame",1,-4,127,491)
+	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,"actionbarBackground",1,-4,127,491)
 	actionbarBackground:SetFrameStrata("LOW")	
 	
-	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",healthOrb1,"AngelFrame",-325,0,200,200)
+	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",UIParent,"leftArtwork",-325,0,200,200)
 	leftArtwork:SetFrameStrata("HIGH")	
 	
-	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",manaOrb1,"DemonFrame",325,0,200,200)
+	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",UIParent,"rightArtwork",325,0,200,200)
 	rightArtwork:SetFrameStrata("HIGH")
 end
 
