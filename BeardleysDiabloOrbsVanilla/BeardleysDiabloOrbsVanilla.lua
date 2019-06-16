@@ -28,7 +28,7 @@ function BDOV_OnLoad()
 	this:RegisterEvent("LOOT_CLOSED")
 end
 
-local function addArtworkFrame(file,parentFrame,frameName,FrameStrata,offsetX,offsetY,height,width)
+local function addArtworkFrame(frameName,parentFrame,file,FrameStrata,offsetX,offsetY,height,width)
 	local artworkFrame = CreateFrame("Frame",frameName,parentFrame)
 	artworkFrame:SetPoint("BOTTOM",offsetX,offsetY)
 	artworkFrame:SetFrameStrata(FrameStrata)
@@ -37,16 +37,13 @@ local function addArtworkFrame(file,parentFrame,frameName,FrameStrata,offsetX,of
 	artworkFrame.texture = artworkFrame:CreateTexture(nil,"OVERLAY")
 	artworkFrame.texture:SetTexture(file)
 	artworkFrame.texture:SetAllPoints(artworkFrame)
-	
 	return artworkFrame
 end
 
 local function createArtwork()
-	actionbarBackground = addArtworkFrame(images.."bar3.tga",UIParent,nil,"LOW",1,-4,127,491)
-	
-	leftArtwork = addArtworkFrame(images.."leftArtwork.tga",UIParent,nil,"HIGH",-325,0,200,200)
-	
-	rightArtwork = addArtworkFrame(images.."rightArtwork.tga",UIParent,nil,"HIGH",325,0,200,200)
+	actionbarBackground = addArtworkFrame(nil,UIParent,images.."bar3.tga","LOW",1,-4,127,491)
+	leftArtwork = addArtworkFrame(nil,UIParent,images.."leftArtwork.tga","HIGH",-325,0,200,200)
+	rightArtwork = addArtworkFrame(nil,UIParent,images.."rightArtwork.tga","HIGH",325,0,200,200)
 end
 
 local function changeActionBar()
