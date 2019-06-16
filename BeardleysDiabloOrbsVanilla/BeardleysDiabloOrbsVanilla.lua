@@ -11,7 +11,7 @@ scaleFactor = 1.35 -- With this value you can scale the whole UI. Menu with sett
 
 
 local images = "Interface\\AddOns\\BeardleysDiabloOrbsVanilla\\art\\"
-function BDOV_OnLoad()
+function BDOMod_OnLoad()
 	this:RegisterEvent("UNIT_HEALTH")
 	this:RegisterEvent("UNIT_MAXHEALTH")
 	this:RegisterEvent("UNIT_RAGE")
