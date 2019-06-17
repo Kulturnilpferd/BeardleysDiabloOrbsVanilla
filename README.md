@@ -11,6 +11,7 @@ Just Copy the Folder to your Addons Folder in WoW Directory
 Open the Graphics Option and enable UI-Scaling and set the Scale to 1 (pull the slider to the right side)
 
 Settings:
+Soon there will be a few console commands to configure the UI.
 At this time, without console commands, you could change the interface size by change in the .lua file under settings the variable what sets the whole UI size to your desired value.
 
 Hints:
