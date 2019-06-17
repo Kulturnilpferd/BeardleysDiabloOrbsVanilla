@@ -11,8 +11,7 @@ Just Copy the Folder to your Addons Folder in WoW Directory
 Open the Graphics Option and enable UI-Scaling and set the Scale to 1 (pull the slider to the right side)
 
 Settings:
-I have plenty of work with make an UI and translate it in various languages beside the nice addon page Curseforge fucked up with Twitch and loose a lot of useful functions so I release this version without a settigngs GUI. Soon I will add console commands to configure some stuff.
-At this time, without console commands, yoou could change the interface size by change in the .lua file under settings the variable what sets the whole UI size to your desired value.
+At this time, without console commands, you could change the interface size by change in the .lua file under settings the variable what sets the whole UI size to your desired value.
 
 Hints:
  - Missing an actionbar? Enable all actionbars in the Interface Settings (ESC -> Interface)
