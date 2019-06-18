@@ -19,7 +19,7 @@ At this time, without console commands, you could change the interface size by c
 Hints:
  - Missing an actionbar? Enable all actionbars in the Interface Settings (ESC -> Interface)
  
- - UI too Big/Small? Change the scaling open "BeardleysDiabloOrbsVanilla.lua" and change the first Variable "Scalefactor"
+ - UI too Big/Small? Change the scaling open "BeardleysDiabloOrbsVanilla.lua" and change the first Variable "scaleFactor"
 
  - When the artwork is not attached to the orbs just enable UI-Scaling in Graphics Options and set it to 1
  
