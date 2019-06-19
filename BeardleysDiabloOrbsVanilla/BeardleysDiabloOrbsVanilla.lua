@@ -26,6 +26,7 @@ function BDOMod_OnLoad()
 	this:RegisterEvent("ACTIONBAR_SLOT_CHANGED")
 	this:RegisterEvent("ACTIONBAR_SHOWGRID")
 	this:RegisterEvent("LOOT_CLOSED")
+	this:RegisterEvent("PET_BAR_UPDATE")
 end
 
 local function addArtworkFrame(frameName,parentFrame,file,FrameStrata,offsetX,offsetY,height,width)
@@ -90,6 +91,34 @@ local function updateManaOrb()
 	BDOMod_ManaText:SetText(UnitMana("player").." / ".. UnitManaMax("player"))
 	BDOMod_BlueOrb:SetHeight(manaPercent * 185)
 	BDOMod_BlueOrb:SetTexCoord(0, 1, 1-manaPercent, 1)
+end
+
+local function handlePetActionBar()
+	if HasPetUI() then
+		PetActionBarFrame:Show()
+		PetActionButton1:Show()
+		PetActionButton2:Show()
+		PetActionButton3:Show()
+		PetActionButton4:Show()
+		PetActionButton5:Show()
+		PetActionButton6:Show()
+		PetActionButton7:Show()
+		PetActionButton8:Show()
+		PetActionButton9:Show()
+		PetActionButton10:Show()
+	else
+		PetActionBarFrame:Hide()
+		PetActionButton1:Hide()
+		PetActionButton2:Hide()
+		PetActionButton3:Hide()
+		PetActionButton4:Hide()
+		PetActionButton5:Hide()
+		PetActionButton6:Hide()
+		PetActionButton7:Hide()
+		PetActionButton8:Hide()
+		PetActionButton9:Hide()
+		PetActionButton10:Hide()
+	end
 end
 
 local function reconfigUI()
@@ -326,7 +355,7 @@ local function reconfigUI()
 	CastingBarFrame:SetScale(scaleFactor*80/100)
 
 	CastingBarFrame:ClearAllPoints()
-	CastingBarFrame:SetPoint("CENTER", 0, 500)	
+	CastingBarFrame:SetPoint("CENTER", 0, 600)	
 
 	--Setup Chatframes
 	ChatFrame1:SetFrameStrata("HIGH")
@@ -350,12 +379,46 @@ local function reconfigUI()
 	ChatFrame7:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
 
-	PetActionBarFrame:ClearAllPoints()
-	PetActionBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",-77,194)
-	PetActionBarFrame:SetScale(scaleFactor*60)
-	PetActionBarFrame:Show()
+	--PetActionBarFrame:ClearAllPoints()
+	--PetActionBarFrame:SetScale(scaleFactor*60/100)
+	--PetActionBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",-77,194)
 	--PetActionBarFrame.ignoreFramePositionManager = true
 
+	PetActionButton1:ClearAllPoints()
+	PetActionButton2:ClearAllPoints()
+	PetActionButton3:ClearAllPoints()
+	PetActionButton4:ClearAllPoints()
+	PetActionButton5:ClearAllPoints()
+	PetActionButton6:ClearAllPoints()
+	PetActionButton7:ClearAllPoints()
+	PetActionButton8:ClearAllPoints()
+	PetActionButton9:ClearAllPoints()
+	PetActionButton10:ClearAllPoints()
+
+	
+	PetActionButton1:SetScale(scaleFactor*50)
+	PetActionButton2:SetScale(scaleFactor*50)
+	PetActionButton3:SetScale(scaleFactor*50)
+	PetActionButton4:SetScale(scaleFactor*50)
+	PetActionButton5:SetScale(scaleFactor*50)
+	PetActionButton6:SetScale(scaleFactor*50)
+	PetActionButton7:SetScale(scaleFactor*50)
+	PetActionButton8:SetScale(scaleFactor*50)
+	PetActionButton9:SetScale(scaleFactor*50)
+	PetActionButton10:SetScale(scaleFactor*50)
+
+	PetActionButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-304,211)
+	PetActionButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-271,211)
+	PetActionButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-238,211)
+	PetActionButton4:SetPoint("BOTTOM", UIParent, "BOTTOM",-205,211)
+	PetActionButton5:SetPoint("BOTTOM", UIParent, "BOTTOM",-172,211)
+	PetActionButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-139,211)
+	PetActionButton7:SetPoint("BOTTOM", UIParent, "BOTTOM",-106,211)
+	PetActionButton8:SetPoint("BOTTOM", UIParent, "BOTTOM",-73,211)
+	PetActionButton9:SetPoint("BOTTOM", UIParent, "BOTTOM",-40,211)
+	PetActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",-7,211)
+	
+	
 	--EXP Bar
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetScale(scaleFactor*34.4)
@@ -451,17 +514,17 @@ local function reconfigUI()
 	MainMenuExpBar:SetScale(scaleFactor*31)
 	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
 
-	ReputationWatchBar:ClearAllPoints()
-	ReputationWatchBar:SetScale(scaleFactor*31)
-	ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
+	--ReputationWatchBar:ClearAllPoints()
+	--ReputationWatchBar:SetScale(scaleFactor*31/100)
+	--ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
 
-	ActionBarUpButton:ClearAllPoints()
-	ActionBarUpButton:SetScale(scaleFactor*66)
-	ActionBarUpButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,16)
+	--ActionBarUpButton:ClearAllPoints()
+	--ActionBarUpButton:SetScale(scaleFactor*66/100)
+	--ActionBarUpButton:SetPoint("BOTTOM", UIParent, "BOTTOM",0,16)
 
-	ActionBarDownButton:ClearAllPoints()
-	ActionBarDownButton:SetScale(scaleFactor*66)
-	ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",500,-2)
+	--ActionBarDownButton:ClearAllPoints()
+	--ActionBarDownButton:SetScale(scaleFactor*66/100)
+	--ActionBarDownButton:SetPoint("BOTTOM", UIParent, "BOTTOM",0,-2)
 end
 
 local function setupOrbs()
@@ -535,6 +598,10 @@ function BDOMod_OnEvent(event)
 	end
 	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="ACTIONBAR_SHOWGRID" or event=="LOOT_CLOSED") then
 		changeActionBar()
+		return
+	end
+	if (event=="PET_BAR_UPDATE") then
+		handlePetActionBar()
 		return
 	end
 end
