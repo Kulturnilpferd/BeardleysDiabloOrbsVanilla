@@ -606,8 +606,10 @@ function BDOMod_OnEvent(event)
 	end
 	if (event=="ADDON_LOADED") then
 		handlePetActionBar()
+		return
 	end
 	if (event=="PET_BAR_UPDATE") then
 		handlePetActionBar()
+		return
 	end
 end
