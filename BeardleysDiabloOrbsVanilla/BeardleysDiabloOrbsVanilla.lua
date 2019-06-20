@@ -27,6 +27,7 @@ function BDOMod_OnLoad()
 	this:RegisterEvent("ACTIONBAR_SHOWGRID")
 	this:RegisterEvent("LOOT_CLOSED")
 	this:RegisterEvent("PET_BAR_UPDATE")
+	this:RegisterEvent("ADDON_LOADED")
 end
 
 local function addArtworkFrame(frameName,parentFrame,file,FrameStrata,offsetX,offsetY,height,width)
@@ -106,6 +107,10 @@ local function handlePetActionBar()
 		PetActionButton8:Show()
 		PetActionButton9:Show()
 		PetActionButton10:Show()
+		
+		CastingBarFrame:ClearAllPoints()
+		CastingBarFrame:SetScale(scaleFactor*70/100)
+		CastingBarFrame:SetPoint("BOTTOM", actionbarBackground, "BOTTOM",0,190)	
 	else
 		PetActionBarFrame:Hide()
 		PetActionButton1:Hide()
@@ -118,6 +123,10 @@ local function handlePetActionBar()
 		PetActionButton8:Hide()
 		PetActionButton9:Hide()
 		PetActionButton10:Hide()
+		
+		CastingBarFrame:ClearAllPoints()
+		CastingBarFrame:SetScale(scaleFactor*70/100)
+		CastingBarFrame:SetPoint("BOTTOM", actionbarBackground, "BOTTOM",0,170)
 	end
 end
 
@@ -352,11 +361,11 @@ local function reconfigUI()
 	MultiBarRightButton1:ClearAllPoints()
 	MultiBarRightButton1:SetPoint("RIGHT",UIParent,"RIGHT",-3,185)
 
-	CastingBarFrame:SetScale(scaleFactor*80/100)
-
-	CastingBarFrame:ClearAllPoints()
-	CastingBarFrame:SetPoint("CENTER", 0, 600)	
-
+	--CastingBarFrame:ClearAllPoints()
+	--CastingBarFrame:SetScale(scaleFactor*70/100)
+	--CastingBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",0,160)	
+	--CastingBarFrame.ignoreFramePositionManager = true
+	
 	--Setup Chatframes
 	ChatFrame1:SetFrameStrata("HIGH")
 	ChatFrame1:SetFrameLevel(9)
@@ -418,12 +427,7 @@ local function reconfigUI()
 	PetActionButton9:SetPoint("BOTTOM", UIParent, "BOTTOM",-40,211)
 	PetActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",-7,211)
 	
-	
-	--EXP Bar
-	MainMenuExpBar:ClearAllPoints()
-	MainMenuExpBar:SetScale(scaleFactor*34.4)
-	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",0,232)
-	MainMenuExpBar.ignoreFramePositionManager = true
+
 
 	--REP Bar (Positioning doesnt work...)
 	--ReputationWatchBar:ClearAllPoints()
@@ -513,7 +517,7 @@ local function reconfigUI()
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetScale(scaleFactor*31)
 	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
-
+	MainMenuExpBar.Hide = function() end
 	--ReputationWatchBar:ClearAllPoints()
 	--ReputationWatchBar:SetScale(scaleFactor*31/100)
 	--ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
@@ -600,8 +604,10 @@ function BDOMod_OnEvent(event)
 		changeActionBar()
 		return
 	end
+	if (event=="ADDON_LOADED") then
+		handlePetActionBar()
+	end
 	if (event=="PET_BAR_UPDATE") then
 		handlePetActionBar()
-		return
 	end
 end
