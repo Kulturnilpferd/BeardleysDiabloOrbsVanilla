@@ -107,10 +107,6 @@ local function handlePetActionBar()
 		PetActionButton8:Show()
 		PetActionButton9:Show()
 		PetActionButton10:Show()
-		
-		CastingBarFrame:ClearAllPoints()
-		CastingBarFrame:SetScale(scaleFactor*70/100)
-		CastingBarFrame:SetPoint("BOTTOM", actionbarBackground, "BOTTOM",0,190)	
 	else
 		PetActionBarFrame:Hide()
 		PetActionButton1:Hide()
@@ -123,10 +119,6 @@ local function handlePetActionBar()
 		PetActionButton8:Hide()
 		PetActionButton9:Hide()
 		PetActionButton10:Hide()
-		
-		CastingBarFrame:ClearAllPoints()
-		CastingBarFrame:SetScale(scaleFactor*70/100)
-		CastingBarFrame:SetPoint("BOTTOM", actionbarBackground, "BOTTOM",0,170)
 	end
 end
 
@@ -361,6 +353,10 @@ local function reconfigUI()
 	MultiBarRightButton1:ClearAllPoints()
 	MultiBarRightButton1:SetPoint("RIGHT",UIParent,"RIGHT",-3,185)
 
+	CastingBarFrame:ClearAllPoints()
+	CastingBarFrame:SetScale(scaleFactor*70/100)
+	CastingBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",0,175)
+	CastingBarFrame.SetPoint = function() end
 	--CastingBarFrame:ClearAllPoints()
 	--CastingBarFrame:SetScale(scaleFactor*70/100)
 	--CastingBarFrame:SetPoint("BOTTOM", UIParent, "BOTTOM",0,160)	
@@ -416,16 +412,16 @@ local function reconfigUI()
 	PetActionButton9:SetScale(scaleFactor*50)
 	PetActionButton10:SetScale(scaleFactor*50)
 
-	PetActionButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-304,211)
-	PetActionButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-271,211)
-	PetActionButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-238,211)
-	PetActionButton4:SetPoint("BOTTOM", UIParent, "BOTTOM",-205,211)
-	PetActionButton5:SetPoint("BOTTOM", UIParent, "BOTTOM",-172,211)
-	PetActionButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-139,211)
-	PetActionButton7:SetPoint("BOTTOM", UIParent, "BOTTOM",-106,211)
-	PetActionButton8:SetPoint("BOTTOM", UIParent, "BOTTOM",-73,211)
-	PetActionButton9:SetPoint("BOTTOM", UIParent, "BOTTOM",-40,211)
-	PetActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",-7,211)
+	PetActionButton1:SetPoint("BOTTOM", UIParent, "BOTTOM",-304,209)
+	PetActionButton2:SetPoint("BOTTOM", UIParent, "BOTTOM",-271,209)
+	PetActionButton3:SetPoint("BOTTOM", UIParent, "BOTTOM",-238,209)
+	PetActionButton4:SetPoint("BOTTOM", UIParent, "BOTTOM",-205,209)
+	PetActionButton5:SetPoint("BOTTOM", UIParent, "BOTTOM",-172,209)
+	PetActionButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-139,209)
+	PetActionButton7:SetPoint("BOTTOM", UIParent, "BOTTOM",-106,209)
+	PetActionButton8:SetPoint("BOTTOM", UIParent, "BOTTOM",-73,209)
+	PetActionButton9:SetPoint("BOTTOM", UIParent, "BOTTOM",-40,209)
+	PetActionButton10:SetPoint("BOTTOM", UIParent, "BOTTOM",-7,209)
 	
 
 
@@ -517,7 +513,7 @@ local function reconfigUI()
 	MainMenuExpBar:ClearAllPoints()
 	MainMenuExpBar:SetScale(scaleFactor*31)
 	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
-	MainMenuExpBar.Hide = function() end
+	--MainMenuExpBar.Hide = function() end
 	--ReputationWatchBar:ClearAllPoints()
 	--ReputationWatchBar:SetScale(scaleFactor*31/100)
 	--ReputationWatchBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,215)--235
@@ -602,10 +598,6 @@ function BDOMod_OnEvent(event)
 	end
 	if (event=="UPDATE_BONUS_ACTIONBAR" or event=="ACTIONBAR_SLOT_CHANGED" or event=="ACTIONBAR_SHOWGRID" or event=="LOOT_CLOSED") then
 		changeActionBar()
-		return
-	end
-	if (event=="ADDON_LOADED") then
-		handlePetActionBar()
 		return
 	end
 	if (event=="PET_BAR_UPDATE") then
