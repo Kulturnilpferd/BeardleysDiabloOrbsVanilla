@@ -509,10 +509,12 @@ local function reconfigUI()
 	ShapeshiftButton6:ClearAllPoints()
 	ShapeshiftButton6:SetScale(scaleFactor*48)
 	ShapeshiftButton6:SetPoint("BOTTOM", UIParent, "BOTTOM",-158,1)		
-
-	MainMenuExpBar:ClearAllPoints()
-	MainMenuExpBar:SetScale(scaleFactor*31)
-	MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
+	
+	if UnitLevel("player") < 60 then
+		MainMenuExpBar:ClearAllPoints()
+		MainMenuExpBar:SetScale(scaleFactor*31)
+		MainMenuExpBar:SetPoint("BOTTOM", UIParent, "BOTTOM",-3,229)--249
+	end
 	--MainMenuExpBar.Hide = function() end
 	--ReputationWatchBar:ClearAllPoints()
 	--ReputationWatchBar:SetScale(scaleFactor*31/100)
